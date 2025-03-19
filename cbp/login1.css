@@ -1,0 +1,26 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f8ff;
+}
+.hero-section {
+    background-image: url('https://img.freepik.com/free-photo/high-angle-view-laptop-stationeries-blue-background_23-2147880456.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+.btn-custom {
+    background-color: #ff6f00;
+    color: white;
+}
+.btn-custom:hover {
+    background-color: #e65100;
+}
+footer {
+    background: #1e3a8a;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}

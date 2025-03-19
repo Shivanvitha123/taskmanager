@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Inline CSS -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #007bff; /* Blue color */
+            color: #fff;
+        }
+
+        .card-body {
+            background-color: #ffffff;
+        }
+
+        #users-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #users-list li {
+            background: #f1f1f1;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .navbar {
+            background-color: #007bff; /* Blue color for navbar */
+        }
+
+        .navbar .navbar-brand,
+        .navbar .nav-link {
+            color: white !important; /* Ensure navbar text is white */
+        }
+
+        .navbar .nav-link:hover {
+            color: #f1f1f1 !important; /* Light color on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">E-Learning - Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" onclick="navigate('admin-profile')">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="navigate('manage-users')">Manage Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="navigate('analytics')">Analytics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="navigate('logout')">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div id="admin-profile-page" class="page">
+            <!-- Admin Profile Section -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Profile Picture">
+                        <div class="card-body">
+                            <h5 class="card-title" id="admin-name">Admin Name</h5>
+                            <p class="card-text" id="admin-email">admin@example.com</p>
+                            <p class="card-text" id="admin-dob">Date of Birth: 01/01/1985</p>
+                            <p class="card-text" id="admin-nationality">Nationality: American</p>
+                            <p class="card-text" id="admin-college">College: XYZ University</p>
+                            <p class="card-text" id="admin-address">Address: 123 Admin St, City, Country</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit Profile</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Admin Privileges</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul id="admin-privileges">
+                                <li>Manage Users</li>
+                                <li>View Analytics</li>
+                                <li>Assign Courses</li>
+                                <li>Manage Content</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Users Section -->
+        <div id="manage-users-page" class="page" style="display:none;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Manage Users</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul id="users-list">
+                                <li>
+                                    User 1 - Student 
+                                    <a href="#" class="btn btn-sm btn-warning float-right" onclick="viewUserDetails('User 1')">View</a>
+                                    <a href="#" class="btn btn-sm btn-info float-right mr-2" onclick="editUser('User 1')">Edit</a>
+                                </li>
+                                <li>
+                                    User 2 - Admin 
+                                    <a href="#" class="btn btn-sm btn-warning float-right" onclick="viewUserDetails('User 2')">View</a>
+                                    <a href="#" class="btn btn-sm btn-info float-right mr-2" onclick="editUser('User 2')">Edit</a>
+                                </li>
+                                <li>
+                                    User 3 - Student 
+                                    <a href="#" class="btn btn-sm btn-warning float-right" onclick="viewUserDetails('User 3')">View</a>
+                                    <a href="#" class="btn btn-sm btn-info float-right mr-2" onclick="editUser('User 3')">Edit</a>
+                                </li>
+                                <li>
+                                    User 4 - Admin 
+                                    <a href="#" class="btn btn-sm btn-warning float-right" onclick="viewUserDetails('User 4')">View</a>
+                                    <a href="#" class="btn btn-sm btn-info float-right mr-2" onclick="editUser('User 4')">Edit</a>
+                                </li>
+                            </ul>
+                            <button class="btn btn-success" onclick="addUser()">Add New User</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div id="analytics-page" class="page" style="display:none;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Analytics</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Here you can view various analytics regarding the platform.</p>
+                            <ul>
+                                <li>Total Users: 1500</li>
+                                <li>Courses Offered: 20</li>
+                                <li>Active Users: 1200</li>
+                                <li>Completed Courses: 3000</li>
+                            </ul>
+                            <button class="btn btn-info" onclick="viewDetailedAnalytics()">View Detailed Analytics</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logout Section -->
+        <div id="logout-page" class="page" style="display:none;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">You have been logged out!</h5>
+                            <p class="card-text">Thank you for your work. Please log in again to continue.</p>
+                            <a href="login.html" class="btn btn-primary">Go to Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery (CDN) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // Function to navigate between pages
+        function navigate(page) {
+            // Hide all pages first
+            document.querySelectorAll('.page').forEach(function(pageDiv) {
+                pageDiv.style.display = 'none';
+            });
+
+            // Show the selected page
+            document.getElementById(page + '-page').style.display = 'block';
+        }
+
+        // Example function to view user details
+        function viewUserDetails(userName) {
+            alert("Viewing details for: " + userName);
+            // You can replace this alert with a dynamic content display or page redirection
+        }
+
+        // Example function to edit user
+        function editUser(userName) {
+            alert("Editing details for: " + userName);
+            // Redirect to a page or show a form to edit the user
+        }
+
+        // Example function to add a new user
+        function addUser() {
+            alert("Adding a new user");
+            // Add a form or redirect to another page for user creation
+        }
+
+        // Example function to view detailed analytics
+        function viewDetailedAnalytics() {
+            alert("Viewing detailed analytics");
+            // You can replace this with actual analytics content
+        }
+    </script>
+</body>
+</html>

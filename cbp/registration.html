@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevateU - Registration</title>
+    <link rel="stylesheet" href="registration.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>ElevateU</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="container">
+        <h2>Register for ElevateU</h2>
+        <form id="registration-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" minlength="8" maxlength="20" required>
+
+            <button type="submit">Register</button>
+            <div class="google-login">Continue with Google</div>
+        </form>
+        <p>Already have an account? <a href="login.html" target="_blank">Login</a></p>
+        <div id="success-message" class="hidden">Successfully registered!</div>
+    </section>
+    <footer>
+        <p class="footer-left">elevateu@gmail.com</p>
+        <p class="footer-right">23071A05Q4</p>
+    </footer>
+    <script>
+        document.getElementById("registration-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("success-message").classList.remove("hidden");
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
+

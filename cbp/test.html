@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevateU - Data Science Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }        .question {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+        .feedback {
+            font-weight: bold;
+            color: #d63384;
+        }
+        .btn-primary, .btn-secondary {
+            width: 100px;
+        }
+        .form-check-input:hover {
+            cursor: pointer;
+        }
+        .form-check-label {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">ElevateU - Data Science Test</h2>
+        <form id="quizForm">
+            
+            <div class="question" id="q1-container">
+                <p>1. Which of the following are supervised learning algorithms? (Multi Correct)</p>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="q1" value="A"><label class="form-check-label">A) Linear Regression</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="q1" value="B"><label class="form-check-label">B) K-Means Clustering</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="q1" value="C"><label class="form-check-label">C) Decision Tree</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="q1" value="D"><label class="form-check-label">D) Naive Bayes</label></div>
+                <p class="feedback" id="q1-feedback"></p>
+            </div>
+            
+            <div class="question" id="q2-container">
+                <p>2. What is the purpose of a confusion matrix in classification tasks? (Single Correct)</p>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="A"><label class="form-check-label">A) Measure data correlation</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="B"><label class="form-check-label">B) Evaluate model performance</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="C"><label class="form-check-label">C) Reduce dimensionality</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="D"><label class="form-check-label">D) Perform feature selection</label></div>
+                <p class="feedback" id="q2-feedback"></p>
+            </div>
+
+            <div class="question" id="q3-container">
+                <p>3. What is the primary goal of exploratory data analysis (EDA)? (Single Correct)</p>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="A"><label class="form-check-label">A) Clean the dataset</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="B"><label class="form-check-label">B) Understand data patterns and relationships</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="C"><label class="form-check-label">C) Train a machine learning model</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="D"><label class="form-check-label">D) Reduce data dimensionality</label></div>
+                <p class="feedback" id="q3-feedback"></p>
+            </div>
+
+            <div class="question" id="q4-container">
+                <p>4. Which of the following are common data preprocessing techniques? (Multi Correct)</p>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="q4" value="A"><label class="form-check-label">A) Normalization</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="q4" value="B"><label class="form-check-label">B) Data Augmentation</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="q4" value="C"><label class="form-check-label">C) Outlier Removal</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="q4" value="D"><label class="form-check-label">D) Feature Engineering</label></div>
+                <p class="feedback" id="q4-feedback"></p>
+            </div>
+
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="honourCode">
+                <label class="form-check-label" for="honourCode">I affirm that I have not copied from any source and that I adhere to the ElevateU Honour Code.</label>
+            </div>
+
+            <div class="d-flex gap-2 mt-3">
+                <button type="button" class="btn btn-primary" onclick="submitQuiz()">Submit</button>
+                <button type="button" class="btn btn-secondary" onclick="saveDraft()">Save Draft</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: ["A", "C", "D"],
+            q2: ["B"],
+            q3: ["B"],
+            q4: ["A", "C", "D"]
+        };
+
+        function submitQuiz() {
+            if (!document.getElementById('honourCode').checked) {
+                alert("You must accept the Honour Code before submitting.");
+                return;
+            }
+
+            for (let question in correctAnswers) {
+                let selectedOptions = Array.from(document.querySelectorAll(`input[name='${question}']:checked`)).map(input => input.value);
+                let correctOptions = correctAnswers[question];
+                let isCorrect = JSON.stringify(selectedOptions.sort()) === JSON.stringify(correctOptions.sort());
+                document.getElementById(`${question}-feedback`).innerText = isCorrect ? "Correct! ✅" : "Incorrect ❌";
+
+                // Disable all inputs to prevent changes
+                document.querySelectorAll(`input[name='${question}']`).forEach(input => input.disabled = true);
+            }
+
+            // Disable the submit button
+            document.querySelector("button.btn-primary").disabled = true;
+        }
+
+        function saveDraft() {
+            alert("Your draft has been saved!");
+        }
+    </script>
+</body>
+</html>

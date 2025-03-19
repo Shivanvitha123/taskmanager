@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | Privacy Policy - ElevateU</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .accordion-button {
+            font-weight: bold;
+        }
+        .agree-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #agreeBtn {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Terms & Conditions | Privacy Policy</h2>
+
+        <div class="accordion mt-4" id="termsAccordion">
+            
+            <!-- Terms and Conditions Section -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#termsContent">
+                        Terms and Conditions
+                    </button>
+                </h2>
+                <div id="termsContent" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <p>Welcome to ElevateU. By using our services, you agree to comply with the following terms and conditions.</p>
+                        <ul>
+                            <li>You must be at least 18 years old to use our services.</li>
+                            <li>All content on this platform is the property of ElevateU and may not be copied without permission.</li>
+                            <li>We reserve the right to suspend accounts violating our guidelines.</li>
+                            <li>Unauthorized use of this platform may lead to legal action.</li>
+                        </ul>
+                        <p>If you do not agree with these terms, please discontinue use of our website.</p>
+
+                        <!-- Checkbox for Agreement -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="termsCheckbox" onchange="checkAgreement()">
+                            <label class="form-check-label" for="termsCheckbox">I agree to the Terms and Conditions</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Policy Section -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacyContent">
+                        Privacy Policy
+                    </button>
+                </h2>
+                <div id="privacyContent" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <p>Your privacy is important to us. This policy explains how we collect, use, and protect your personal data.</p>
+                        <ul>
+                            <li>We collect personal data such as name, email, and usage activity.</li>
+                            <li>We do not share your personal information with third parties without consent.</li>
+                            <li>We use cookies to improve your browsing experience.</li>
+                            <li>You have the right to request data deletion at any time.</li>
+                        </ul>
+                        <p>By using ElevateU, you agree to this Privacy Policy.</p>
+
+                        <!-- Checkbox for Agreement -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="privacyCheckbox" onchange="checkAgreement()">
+                            <label class="form-check-label" for="privacyCheckbox">I agree to the Privacy Policy</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- I Agree Button -->
+        <div class="agree-container">
+            <button id="agreeBtn" class="btn btn-success" disabled onclick="agreeTerms()">I Agree</button>
+        </div>
+    </div>
+
+    <script>
+        function checkAgreement() {
+            let termsChecked = document.getElementById("termsCheckbox").checked;
+            let privacyChecked = document.getElementById("privacyCheckbox").checked;
+            let agreeBtn = document.getElementById("agreeBtn");
+
+            // Enable the button only if both checkboxes are checked
+            agreeBtn.disabled = !(termsChecked && privacyChecked);
+        }
+
+        function agreeTerms() {
+            alert("Thank you for agreeing to the Terms & Privacy Policy.");
+            window.location.href = "index.html"; // Redirect to homepage
+        }
+    </script>
+</body>
+</html>
